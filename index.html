@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Абдурасул & Роза — Үйлөнүү тоюна чакыруу</title>
 <meta name="description" content="Абдурасул менен Розанын үйлөнүү тоюна арналган ак дасторконубуздун кадырлуу коногу болууга чакырабыз. 09-ноябрь 2026, саат 16:00, «Тумар» ресторан.">
-<meta name="theme-color" content="#8997cb">
+<meta name="theme-color" content="#141414">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Абдурасул & Роза — Үйлөнүү тоюна чакыруу">
@@ -16,25 +16,12 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Marck+Script&family=Montserrat:wght@300;400;500;600&family=Prata&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
+<!-- ?v=N — өзгөртүү киргизгенде санды чоңойтсоңуз, конокторго жаңысы келет -->
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
-
-<!-- Бир жолу жазылган жүрөк — калгандары буга шилтеме -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="heart" viewBox="0 0 100 100">
-    <path class="hrt__o" d="M50 88C22 67 10 52 10 37 10 24 20 15 32 15c9 0 15 5 18 12 3-7 9-12 18-12 12 0 22 9 22 22 0 15-12 30-40 51Z"/>
-    <g transform="translate(8 7.36) scale(.84)">
-      <path class="hrt__c" d="M50 45C43 55 26 49 20 61c-6 13 8 22 16 12 5-7-4-12-8-6"/>
-      <path class="hrt__c" d="M50 45c7 10 24 4 30 16 6 13-8 22-16 12-5-7 4-12 8-6"/>
-      <path class="hrt__s" d="M50 32c1.4 7.4 3.8 9.8 9 11.6-5.2 1.8-7.6 4.2-9 11.6-1.4-7.4-3.8-9.8-9-11.6 5.2-1.8 7.6-4.2 9-11.6Z"/>
-      <path class="hrt__s" d="M50 64c1.4 7.4 3.8 9.8 9 11.6-5.2 1.8-7.6 4.2-9 11.6-1.4-7.4-3.8-9.8-9-11.6 5.2-1.8 7.6-4.2 9-11.6Z"/>
-    </g>
-  </symbol>
-</svg>
-
 
 <!-- ================= МУЗЫКА ================= -->
 <audio id="bgMusic" loop preload="none" src="assets/music.mp3"></audio>
@@ -67,7 +54,6 @@
     </svg>
   </a>
 
-  <div class="band" aria-hidden="true"></div>
 </header>
 
 
@@ -90,7 +76,7 @@
     </p>
 
     <div class="divider" data-reveal>
-      <i></i><svg class="hrt"><use href="#heart"/></svg><i></i>
+      <i></i>
     </div>
 
     <p class="caps caps--md" data-reveal>Той ээлери:</p>
@@ -101,8 +87,6 @@
 
 <!-- ================= 3. КАЛЕНДАРЬ ================= -->
 <section class="section section--calendar">
-  <div class="edge" aria-hidden="true"></div>
-
   <div class="wrap">
     <p class="caps caps--md" data-reveal>Той салтанаты:</p>
     <p class="script script--date" data-reveal>09-ноябрь 2026</p>
@@ -116,7 +100,10 @@
       <div class="cal__grid">
         <span></span><span></span><span></span><span></span><span></span><span></span><span>1</span>
         <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
-        <span class="is-day"><img class="day-heart" src="assets/heart-plain.png" alt=""><b>9</b></span>
+        <span class="is-day">
+          <svg class="day-heart" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M50 86C24 66 12 52 12 37.5 12 25 21.5 16 32.5 16c7.6 0 14 4.4 17.5 11 3.5-6.6 9.9-11 17.5-11C78.5 16 88 25 88 37.5 88 52 76 66 50 86Z"/>
+          </svg><b>9</b></span>
         <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
         <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
         <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
@@ -148,8 +135,6 @@
 
 <!-- ================= 5. ЖАЙЫ ================= -->
 <section class="section section--venue">
-  <div class="edge" aria-hidden="true"></div>
-
   <div class="wrap">
     <h2 class="caps caps--title" data-reveal>Той өтүүчү жай:</h2>
     <div class="rule" data-reveal></div>
@@ -179,19 +164,12 @@
 
 <!-- ================= 6. RSVP ================= -->
 <section class="section section--rsvp">
-  <div class="edge" aria-hidden="true"></div>
-
   <div class="wrap">
-    <div class="divider divider--solo" data-reveal>
-      <svg class="hrt"><use href="#heart"/></svg>
-    </div>
-
     <h2 class="caps caps--title" data-reveal>Тойго келериңизди<br>ырастооңузду суранабыз</h2>
 
     <form id="rsvpForm" class="form" data-reveal novalidate>
       <label class="field">
         <input type="text" id="guestName" name="name" placeholder="Атыңыз" autocomplete="name" required>
-        <svg class="hrt hrt--solid field__ico" aria-hidden="true"><use href="#heart"/></svg>
       </label>
 
       <div class="radios" role="radiogroup" aria-label="Жооп">
@@ -214,15 +192,14 @@
     </form>
 
     <div class="divider" data-reveal>
-      <i></i><svg class="hrt"><use href="#heart"/></svg><i></i>
+      <i></i>
     </div>
 
     <p class="caps caps--lead" data-reveal>Келиңиздер, кадырлуу<br>конокторубуз болуңуздар!</p>
   </div>
 
-  <div class="band band--footer" aria-hidden="true"></div>
 </section>
 
-<script src="script.js"></script>
+<script src="script.js?v=2"></script>
 </body>
 </html>

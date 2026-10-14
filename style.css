@@ -2,26 +2,35 @@
    Абдурасул & Роза — үйлөнүү тоюна чакыруу
    ======================================================= */
 
+/* Каллиграфия шрифти — долбоордун өзүндө турат, интернеттен жүктөлбөйт */
+@font-face{
+  font-family:'Mon Plesir';
+  src:url('assets/fonts/monplesir.ttf') format('truetype');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+
 :root{
-  /* --blue узор сүрөтүнүн фону менен дал келет (#8997cb) */
-  --blue:        #8997cb;
-  --blue-deep:   #7382bd;
-  --blue-soft:   #c7cde6;
-  --blue-ghost:  #eef0f8;
-  --ink:         #15151a;
-  --ink-soft:    #3a3a44;
+  /* Кара-ак стиль. Көк түс таптакыр жок. */
+  --blue:        #141414;   /* акцент (аттар, баскычтар, таймер фону) */
+  --blue-deep:   #000000;   /* баскычтын hover абалы */
+  --blue-soft:   #c9c9c9;
+  --blue-ghost:  #f1f1f1;
+  --ink:         #141414;
+  --ink-soft:    #4a4a4a;
   --paper:       #ffffff;
 
-  /* Баары кыргыз тамгаларын (ң, ө, ү) толук колдойт */
-  --f-display: 'Prata', 'Cormorant Garamond', 'Times New Roman', serif;
-  --f-serif:   'Cormorant Garamond', 'Prata', 'Times New Roman', serif;
-  --f-script:  'Marck Script', 'Cormorant Garamond', cursive;
-  --f-body:    'Montserrat', 'Segoe UI', sans-serif;
+  /* Эки гана шрифт. Экөө тең кыргыз тамгаларын (ң, ө, ү) толук колдойт.
+     --f-script — аттар, той ээлери, ресторан, дата үчүн каллиграфия.
+     --f-text   — калган БААРЫ ушул бир стилде. */
+  --f-script: 'Mon Plesir', cursive;
+  --f-text:   'Cormorant Garamond', 'Times New Roman', serif;
 
-  /* Узор сүрөттөрү */
-  --orn-band:   url("assets/orn-band.webp");   /* көк кашат, 2000x250 */
-  --orn-tile:   url("assets/orn-tile.webp");   /* фондогу медальон, 1:1 */
-  --orn-edge:   url("assets/orn-edge.webp");   /* ачык көк чачы */
+  /* эскилердин ордуна — баары бир стилде */
+  --f-display: var(--f-text);
+  --f-serif:   var(--f-text);
+  --f-body:    var(--f-text);
 
   --shell: 560px;
 }
@@ -32,7 +41,7 @@ html{ -webkit-text-size-adjust:100%; }
 
 body{
   margin:0;
-  background:#e9eaf1;
+  background:#ededed;
   color:var(--ink);
   font-family:var(--f-display);
   line-height:1.5;
@@ -49,7 +58,7 @@ body > section{
   overflow:hidden;
 }
 @media (min-width:600px){
-  body > header{ box-shadow:0 0 0 1px rgba(0,0,0,.05), 0 30px 70px -40px rgba(30,36,70,.5); }
+  body > header{ box-shadow:0 0 0 1px rgba(0,0,0,.05), 0 30px 70px -40px rgba(0,0,0,.45); }
   body > section{ box-shadow:0 0 0 1px rgba(0,0,0,.05); }
 }
 
@@ -77,79 +86,34 @@ img{ display:block; max-width:100%; }
 .caps--md    { font-size:21px;  line-height:1.8;  letter-spacing:.12em; }
 .caps--lead  { font-size:18px;  line-height:2;    letter-spacing:.12em; }
 .caps--title {
-  font-family:var(--f-display);
-  font-weight:400;
-  font-size:clamp(21px,5.9vw,26px);
-  line-height:1.5;
-  letter-spacing:.05em;
+  font-weight:500;
+  font-size:clamp(23px,6.4vw,29px);
+  line-height:1.45;
+  letter-spacing:.07em;
 }
 
+/* Каллиграфия: аттар, той ээлери, ресторан, дата */
 .script{
   display:block;
   margin:0;
   font-family:var(--f-script);
   font-weight:400;
-  color:var(--blue);
-  line-height:1.2;
+  color:var(--ink);
+  line-height:1.3;
   letter-spacing:.02em;
   text-align:center;
 }
-.script--xl    { font-size:clamp(46px,13vw,72px); color:var(--ink); }
-.script--lg    { font-size:clamp(42px,11.5vw,62px); margin:2px 0 4px; }
-.script--md    { font-size:clamp(34px,9.5vw,48px);  margin:6px 0; }
-.script--date  { font-size:clamp(30px,8.5vw,40px);  margin:4px 0 26px; }
-.script--white { font-size:clamp(27px,7.5vw,36px);  color:#fff; }
+.script--xl    { font-size:clamp(50px,14vw,78px);   }
+.script--lg    { font-size:clamp(46px,12.5vw,68px); margin:0 0 2px; }
+.script--md    { font-size:clamp(38px,10.5vw,54px); margin:2px 0; }
+.script--date  { font-size:clamp(33px,9vw,45px);    margin:0 0 26px; }
+.script--white { font-size:clamp(30px,8vw,40px);    color:#fff; }
 
 .mt-lg{ margin-top:30px; }
 .mt-xl{ margin-top:44px; }
 
-/* ---------- фондогу оюу-чийме ---------- */
-
-/* Ар бир бөлүмдө бир чоң тоголок узор, бир капталда, четинен кесилип турат.
-   Кайталанбайт — ошондуктан тексттин ортосуна кирбейт. */
-
-.section::before{
-  content:"";
-  position:absolute;
-  width:560px; height:560px;
-  background:var(--orn-tile) no-repeat center / contain;
-  opacity:.6;
-  mix-blend-mode:multiply;
-  pointer-events:none;
-  z-index:0;
-}
-
-.section--invite::before  { left:-370px;  top:10%; }
-.section--calendar::before{ right:-370px; top:14%; }
-.section--rsvp::before    { right:-370px; top:8%;  }
-.section--venue::before   { display:none; }   /* ресторан бөлүмүндө узор жок */
-
-/* ---------- көк узор кашаты ---------- */
-
-.band{
-  height:58px;
-  background:var(--orn-band) repeat-x center center;
-  background-size:auto 100%;
-}
-.hero .band{
-  position:absolute;
-  left:0; right:0; bottom:0;
-}
-.band--footer{ position:relative; z-index:2; }
-
-/* ---------- ачык көк чачы (бөлүмдүн башында) ---------- */
-
-.edge{
-  position:absolute;
-  left:0; right:0; top:0;
-  height:46px;
-  background:var(--orn-edge) repeat-x center top;
-  background-size:auto 130%;
-  opacity:.85;
-  pointer-events:none;
-  z-index:1;
-}
-.edge + .wrap{ padding-top:78px; }
+/* Декоративдик узорлор толугу менен алынды — таза, минималисттик дизайн.
+   Сүрөттөр assets/ ичинде калды, керек болсо кайра кайтарууга болот. */
 
 /* =========================================================
    1. HERO
@@ -192,7 +156,7 @@ img{ display:block; max-width:100%; }
   margin-left:-23px;
   border:1.5px solid rgba(255,255,255,.9);
   border-radius:50%;
-  background:rgba(137,151,203,.35);
+  background:rgba(0,0,0,.30);
   backdrop-filter:blur(3px);
   animation:bob 2s ease-in-out infinite;
 }
@@ -220,8 +184,8 @@ img{ display:block; max-width:100%; }
   pointer-events:none;
 }
 .script--amp{
-  font-size:clamp(32px,8.5vw,46px);
-  margin:-14px 0 -12px;
+  font-size:clamp(30px,8vw,42px);
+  margin:4px 0 2px;
   color:var(--ink);
 }
 
@@ -233,44 +197,19 @@ img{ display:block; max-width:100%; }
 
 /* ---------- бөлгүч (жүрөк) ---------- */
 
-/* ---------- оюулуу жүрөк ---------- */
-
-.hrt{
-  display:block;
-  width:40px; height:40px;
-  overflow:visible;
-}
-.hrt__o,
-.hrt__c{
-  fill:none;
-  stroke:var(--blue);
-  stroke-width:6;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-.hrt__c{ stroke-width:7; }   /* топ 0.84ке кичирейгендиктен калыңыраак */
-.hrt__s{ fill:var(--blue); }
-
-/* толтурулган вариант — формадагы белги (майда болгондуктан жөнөкөйлөтүлгөн) */
-.hrt--solid .hrt__o{ fill:var(--blue); stroke-width:4; }
-.hrt--solid .hrt__c{ stroke:#fff; stroke-width:8; }
-.hrt--solid .hrt__s{ display:none; }
+/* ---------- жөнөкөй бөлгүч сызык ---------- */
 
 .divider{
   display:flex;
-  align-items:center;
   justify-content:center;
-  gap:16px;
-  margin:34px auto;
+  margin:40px auto;
 }
 .divider i{
   display:block;
-  width:64px; height:1px;
-  background:var(--blue);
-  opacity:.7;
+  width:150px; height:1px;
+  background:var(--ink);
+  opacity:.35;
 }
-.divider--solo{ margin:0 auto 26px; }
-.divider--solo .hrt{ width:46px; height:46px; }
 
 .rule{
   width:180px; height:1px;
@@ -285,11 +224,11 @@ img{ display:block; max-width:100%; }
 
 .month{
   margin:6px 0 10px;
-  font-family:var(--f-display);
-  font-weight:400;
-  font-size:clamp(30px,8vw,40px);
+  font-family:var(--f-text);
+  font-weight:500;
+  font-size:clamp(33px,8.8vw,44px);
   text-transform:uppercase;
-  letter-spacing:.04em;
+  letter-spacing:.06em;
 }
 .month::after{
   content:"";
@@ -317,8 +256,9 @@ img{ display:block; max-width:100%; }
 }
 .cal__grid{
   row-gap:6px;
-  font-family:var(--f-display);
-  font-size:clamp(17px,5vw,21px);
+  font-family:var(--f-text);
+  font-weight:500;
+  font-size:clamp(19px,5.4vw,23px);
   font-variant-numeric:lining-nums;
 }
 .cal__grid > span{
@@ -329,14 +269,17 @@ img{ display:block; max-width:100%; }
   height:34px;
 }
 .cal__grid .is-day b{ font-weight:400; position:relative; z-index:2; }
-/* календардагы белги — оюусуз жүрөк, сан ачык көрүнөт */
+/* календардагы белги — жөнөкөй жүрөк контуру, сан ачык көрүнөт */
 .day-heart{
   position:absolute;
   top:50%; left:50%;
-  width:48px; height:48px;
-  max-width:none;              /* глобалдык img эрежеси кыспасын */
-  object-fit:contain;
-  transform:translate(-50%,-46%);
+  width:46px; height:46px;
+  transform:translate(-50%,-48%);
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:4;
+  stroke-linejoin:round;
+  opacity:.55;
   z-index:1;
 }
 
@@ -346,8 +289,9 @@ img{ display:block; max-width:100%; }
   justify-content:center;
   gap:14px;
   margin:6px 0 0;
-  font-family:var(--f-display);
-  font-size:clamp(30px,8vw,38px);
+  font-family:var(--f-text);
+  font-weight:500;
+  font-size:clamp(33px,8.8vw,42px);
   letter-spacing:.02em;
   font-variant-numeric:lining-nums;
 }
@@ -388,8 +332,9 @@ img{ display:block; max-width:100%; }
   width:60px; height:60px;
   border:1.5px solid rgba(255,255,255,.9);
   border-radius:50%;
-  font-family:var(--f-display);
-  font-size:21px;
+  font-family:var(--f-text);
+  font-weight:500;
+  font-size:23px;
   font-variant-numeric:lining-nums tabular-nums;
 }
 .cd__lbl{
@@ -419,7 +364,7 @@ img{ display:block; max-width:100%; }
   color:#fff;
   border-radius:999px;
   transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
-  box-shadow:0 10px 24px -14px rgba(60,72,135,.9);
+  box-shadow:0 10px 24px -14px rgba(0,0,0,.55);
 }
 .btn:hover{ background:var(--blue-deep); transform:translateY(-2px); }
 .btn:active{ transform:translateY(0); }
@@ -427,9 +372,10 @@ img{ display:block; max-width:100%; }
 .btn--map{
   margin-top:26px;
   padding:14px 54px;
-  font-family:var(--f-display);
-  font-size:27px;
-  letter-spacing:.03em;
+  font-family:var(--f-text);
+  font-weight:600;
+  font-size:28px;
+  letter-spacing:.08em;
 }
 
 .photo{
@@ -456,12 +402,14 @@ img{ display:block; max-width:100%; }
 }
 .field input{
   width:100%;
-  padding:16px 56px 16px 24px;
+  padding:16px 26px;
   border:1px solid var(--ink);
   border-radius:999px;
   background:#fff;
-  font-family:var(--f-body);
-  font-size:17px;
+  font-family:var(--f-text);
+  font-weight:500;
+  font-size:19px;
+  text-align:center;
   color:var(--ink);
   outline:none;
   transition:border-color .2s ease, box-shadow .2s ease;
@@ -469,14 +417,7 @@ img{ display:block; max-width:100%; }
 .field input::placeholder{ color:#9a9aa4; }
 .field input:focus{
   border-color:var(--blue);
-  box-shadow:0 0 0 3px rgba(141,155,208,.25);
-}
-.field__ico{
-  position:absolute;
-  right:15px; top:50%;
-  transform:translateY(-50%);
-  width:38px; height:38px;
-  pointer-events:none;
+  box-shadow:0 0 0 3px rgba(0,0,0,.14);
 }
 
 .hint{
@@ -502,9 +443,9 @@ img{ display:block; max-width:100%; }
   align-items:center;
   gap:12px;
   cursor:pointer;
-  font-family:var(--f-body);
-  font-size:16px;
-  font-weight:400;
+  font-family:var(--f-text);
+  font-size:20px;
+  font-weight:500;
   color:var(--ink);
 }
 .radio input{ position:absolute; opacity:0; width:0; height:0; }
@@ -527,7 +468,7 @@ img{ display:block; max-width:100%; }
 }
 .radio input:checked + i{ border-color:var(--blue); }
 .radio input:checked + i::after{ transform:scale(1); }
-.radio input:focus-visible + i{ box-shadow:0 0 0 3px rgba(141,155,208,.35); }
+.radio input:focus-visible + i{ box-shadow:0 0 0 3px rgba(0,0,0,.22); }
 
 /* ---------- коноктордун саны ---------- */
 
@@ -540,10 +481,10 @@ img{ display:block; max-width:100%; }
 
 .count__label{
   margin:0 0 12px;
-  font-family:var(--f-body);
-  font-weight:500;
-  font-size:14px;
-  letter-spacing:.06em;
+  font-family:var(--f-text);
+  font-weight:600;
+  font-size:15px;
+  letter-spacing:.11em;
   text-transform:uppercase;
   color:var(--ink);
 }
@@ -586,9 +527,9 @@ img{ display:block; max-width:100%; }
   outline:none;
   background:none;
   text-align:center;
-  font-family:var(--f-body);
-  font-weight:500;
-  font-size:19px;
+  font-family:var(--f-text);
+  font-weight:600;
+  font-size:22px;
   font-variant-numeric:lining-nums;
   color:var(--ink);
   -moz-appearance:textfield;
@@ -601,10 +542,11 @@ img{ display:block; max-width:100%; }
   width:100%;
   margin:28px auto 0;
   padding:17px 24px;
-  font-family:var(--f-body);
-  font-weight:500;
-  font-size:17px;
-  letter-spacing:.03em;
+  font-family:var(--f-text);
+  font-weight:600;
+  font-size:19px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
 }
 .btn--submit[disabled]{ opacity:.6; cursor:default; transform:none; }
 
@@ -667,7 +609,7 @@ img{ display:block; max-width:100%; }
   width:40px; height:40px;
   background:rgba(255,255,255,.92);
   border-color:var(--blue);
-  box-shadow:0 8px 20px -10px rgba(40,50,100,.6);
+  box-shadow:0 8px 20px -10px rgba(0,0,0,.45);
 }
 .music-btn.is-compact svg{ width:17px; height:17px; fill:var(--blue); }
 
