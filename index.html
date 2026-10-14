@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Абдурасул & Роза — Үйлөнүү тоюна чакыруу</title>
 <meta name="description" content="Абдурасул менен Розанын үйлөнүү тоюна арналган ак дасторконубуздун кадырлуу коногу болууга чакырабыз. 09-ноябрь 2026, саат 16:00, «Тумар» ресторан.">
-<meta name="theme-color" content="#141414">
+<meta name="theme-color" content="#f2ece1">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Абдурасул & Роза — Үйлөнүү тоюна чакыруу">
@@ -14,14 +14,31 @@
 
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
+<link rel="preload" as="image" href="assets/envelope.webp">
+<link rel="preload" as="image" href="assets/seal.webp">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- ?v=N — өзгөртүү киргизгенде санды чоңойтсоңуз, конокторго жаңысы келет -->
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
+
+<!-- ================= КОНВЕРТ ================= -->
+<div class="env" id="envelope" role="button" tabindex="0" aria-label="Чакырууну ачуу">
+  <div class="env__flaps" aria-hidden="true">
+    <div class="env__flap env__flap--t"><img src="assets/envelope.webp" alt=""></div>
+    <div class="env__flap env__flap--r"><img src="assets/envelope.webp" alt=""></div>
+    <div class="env__flap env__flap--b"><img src="assets/envelope.webp" alt=""></div>
+    <div class="env__flap env__flap--l"><img src="assets/envelope.webp" alt=""></div>
+  </div>
+
+  <img class="env__seal" src="assets/seal.webp" alt="" aria-hidden="true">
+  <p class="env__hint">Ачуу үчүн басыңыз</p>
+</div>
+
 
 <!-- ================= МУЗЫКА ================= -->
 <audio id="bgMusic" loop preload="none" src="assets/music.mp3"></audio>
@@ -200,6 +217,6 @@
 
 </section>
 
-<script src="script.js?v=3"></script>
+<script src="script.js?v=6"></script>
 </body>
 </html>

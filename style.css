@@ -4,8 +4,8 @@
 
 /* Каллиграфия шрифти — долбоордун өзүндө турат, интернеттен жүктөлбөйт */
 @font-face{
-  font-family:'Mon Plesir';
-  src:url('assets/monplesir.ttf') format('truetype');
+  font-family:'Florisel Script';
+  src:url('assets/florisel.ttf') format('truetype');
   font-weight:400;
   font-style:normal;
   font-display:swap;
@@ -21,12 +21,17 @@
   --ink-soft:    #4a4a4a;
   --paper:       #ffffff;
 
+  /* Конверттин кагазынын түсү. Конверт сүрөтү даяр болгондо
+     так түсүн ушул эки саптан тууралайбыз. */
+  --cream:       #f3eee4;
+  --cream-deep:  #e9e2d6;
+
   /* Эки гана шрифт. Экөө тең кыргыз тамгаларын (ң, ө, ү) толук колдойт.
      --f-script — аттар, той ээлери, ресторан, дата үчүн каллиграфия.
      --f-text   — калган БААРЫ ушул бир стилде. */
   /* Эгер шрифт файлы кандайдыр себептен жүктөлбөй калса,
      Comic Sans эмес, кооз серифке түшсүн */
-  --f-script: 'Mon Plesir', 'Cormorant Garamond', 'Times New Roman', serif;
+  --f-script: 'Florisel Script', 'Cormorant Garamond', 'Times New Roman', serif;
   --f-text:   'Cormorant Garamond', 'Times New Roman', serif;
 
   /* эскилердин ордуна — баары бир стилде */
@@ -43,7 +48,7 @@ html{ -webkit-text-size-adjust:100%; }
 
 body{
   margin:0;
-  background:#ededed;
+  background:var(--cream-deep);
   color:var(--ink);
   font-family:var(--f-display);
   line-height:1.5;
@@ -65,6 +70,104 @@ body > section{
 }
 
 img{ display:block; max-width:100%; }
+
+/* =========================================================
+   КОНВЕРТ — басканда төрт жакка ачылат
+   ========================================================= */
+
+body.env-locked{ overflow:hidden; }
+
+.env{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--cream);
+  overflow:hidden;
+  cursor:pointer;
+  perspective:1600px;
+  transition:background-color .8s ease .25s;
+}
+.env.is-open{ background-color:transparent; }
+.env.is-gone{ visibility:hidden; pointer-events:none; }
+
+/* төрт үч бурчтук — баары бир эле сүрөттүн үстүндө,
+   ошондуктан ачылганга чейин бир бүтүн болуп көрүнөт */
+.env__flaps{
+  position:absolute;
+  top:0; bottom:0; left:0; right:0;
+  max-width:var(--shell);
+  margin-inline:auto;
+  transform-style:preserve-3d;
+}
+.env__flap{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  transition:transform 1.25s cubic-bezier(.65,.02,.32,1),
+             opacity .75s ease .45s;
+}
+.env__flap img{
+  width:100%; height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.env__flap--t{ clip-path:polygon(0 0,    100% 0,    50% 50%); transform-origin:center top; }
+.env__flap--r{ clip-path:polygon(100% 0, 100% 100%, 50% 50%); transform-origin:right center; }
+.env__flap--b{ clip-path:polygon(0 100%, 100% 100%, 50% 50%); transform-origin:center bottom; }
+.env__flap--l{ clip-path:polygon(0 0,    0 100%,    50% 50%); transform-origin:left center; }
+
+.env.is-open .env__flap{ opacity:0; }
+.env.is-open .env__flap--t{ transform:rotateX(-118deg); }
+.env.is-open .env__flap--b{ transform:rotateX( 118deg); }
+.env.is-open .env__flap--l{ transform:rotateY( 118deg); }
+.env.is-open .env__flap--r{ transform:rotateY(-118deg); }
+
+/* мөөр */
+.env__seal{
+  position:relative;
+  z-index:3;
+  width:min(56vw,255px);
+  height:auto;
+  filter:drop-shadow(0 12px 26px rgba(70,45,35,.28));
+  animation:sealBreathe 2.8s ease-in-out infinite;
+  transition:transform .55s ease, opacity .5s ease;
+}
+@keyframes sealBreathe{
+  0%,100%{ transform:scale(1); }
+  50%    { transform:scale(1.04); }
+}
+.env.is-open .env__seal{
+  animation:none;
+  transform:scale(.55) rotate(-8deg);
+  opacity:0;
+}
+
+/* «Ачуу үчүн басыңыз» */
+.env__hint{
+  position:absolute;
+  left:0; right:0; bottom:11%;
+  z-index:3;
+  margin:0;
+  font-family:var(--f-text);
+  font-weight:600;
+  font-size:13px;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:#9b6a5e;
+  text-align:center;
+  transition:opacity .35s ease;
+}
+.env.is-open .env__hint{ opacity:0; }
+
+@media (prefers-reduced-motion:reduce){
+  .env__seal{ animation:none; }
+  .env__flap{ transition-duration:.45s; }
+}
+
 
 /* ---------- жалпы типографика ---------- */
 
@@ -101,15 +204,17 @@ img{ display:block; max-width:100%; }
   font-family:var(--f-script);
   font-weight:400;
   color:var(--ink);
-  line-height:1.3;
+  /* Florisel'дин куйруктары узун — саптар бири-бирине кирбеши үчүн
+     line-height чоң болушу керек */
+  line-height:1.7;
   letter-spacing:.02em;
   text-align:center;
 }
-.script--xl    { font-size:clamp(50px,14vw,78px);   }
-.script--lg    { font-size:clamp(46px,12.5vw,68px); margin:0 0 2px; }
-.script--md    { font-size:clamp(38px,10.5vw,54px); margin:2px 0; }
-.script--date  { font-size:clamp(33px,9vw,45px);    margin:0 0 26px; }
-.script--white { font-size:clamp(30px,8vw,40px);    color:#fff; }
+.script--xl    { font-size:clamp(58px,16vw,88px);   }
+.script--lg    { font-size:clamp(54px,14.5vw,80px); margin:0; }
+.script--md    { font-size:clamp(46px,12.5vw,64px); margin:0; }
+.script--date  { font-size:clamp(40px,11vw,54px);   margin:0 0 20px; }
+.script--white { font-size:clamp(36px,9.5vw,48px);  }
 
 .mt-lg{ margin-top:30px; }
 .mt-xl{ margin-top:44px; }
@@ -186,8 +291,9 @@ img{ display:block; max-width:100%; }
   pointer-events:none;
 }
 .script--amp{
-  font-size:clamp(30px,8vw,42px);
-  margin:4px 0 2px;
+  font-size:clamp(28px,7vw,38px);
+  line-height:1;
+  margin:-6px 0 -4px;
   color:var(--ink);
 }
 
@@ -303,14 +409,15 @@ img{ display:block; max-width:100%; }
    4. ТАЙМЕР
    ========================================================= */
 
+/* Фону — конверттин кагазынын түсү, жазуусу кара */
 .countdown{
   position:relative;
   max-width:var(--shell);
   margin-inline:auto;
-  background:var(--blue);
-  padding:30px 18px 34px;
+  background:var(--cream);
+  padding:34px 18px 38px;
   text-align:center;
-  color:#fff;
+  color:var(--ink);
 }
 .countdown .script--white{ margin-bottom:24px; }
 
@@ -332,7 +439,7 @@ img{ display:block; max-width:100%; }
   align-items:center;
   justify-content:center;
   width:60px; height:60px;
-  border:1.5px solid rgba(255,255,255,.9);
+  border:1.2px solid rgba(20,20,20,.5);
   border-radius:50%;
   font-family:var(--f-text);
   font-weight:500;
@@ -357,18 +464,19 @@ img{ display:block; max-width:100%; }
    5. ЖАЙЫ
    ========================================================= */
 
+/* Баскычтардын фону — конверттин кагазынын түсү */
 .btn{
   display:inline-block;
-  border:0;
   cursor:pointer;
   text-decoration:none;
-  background:var(--blue);
-  color:#fff;
+  background:var(--cream);
+  color:var(--ink);
+  border:1px solid rgba(20,20,20,.55);
   border-radius:999px;
-  transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
-  box-shadow:0 10px 24px -14px rgba(0,0,0,.55);
+  transition:transform .2s ease, background-color .2s ease, box-shadow .2s ease;
+  box-shadow:0 10px 24px -16px rgba(70,50,35,.65);
 }
-.btn:hover{ background:var(--blue-deep); transform:translateY(-2px); }
+.btn:hover{ background:var(--cream-deep); transform:translateY(-2px); }
 .btn:active{ transform:translateY(0); }
 
 .btn--map{
@@ -511,16 +619,16 @@ img{ display:block; max-width:100%; }
   justify-content:center;
   border:0;
   border-radius:50%;
-  background:var(--blue-ghost);
-  color:var(--blue-deep);
+  background:var(--cream);
+  color:var(--ink);
   font-family:var(--f-body);
   font-size:21px;
   line-height:1;
   cursor:pointer;
   transition:background .2s ease, color .2s ease;
 }
-.stepper__btn:hover{ background:var(--blue); color:#fff; }
-.stepper__btn:disabled{ opacity:.35; cursor:default; background:var(--blue-ghost); color:var(--blue-deep); }
+.stepper__btn:hover{ background:var(--cream-deep); }
+.stepper__btn:disabled{ opacity:.35; cursor:default; background:var(--cream); color:var(--ink); }
 
 .stepper__val{
   flex:1;

@@ -16,6 +16,37 @@ const CONFIG = {
 };
 
 /* -------------------------------------------------------
+   0. Конверт — басканда төрт жакка ачылат
+   ------------------------------------------------------- */
+(() => {
+  const env = document.getElementById('envelope');
+  if (!env) return;
+
+  document.body.classList.add('env-locked');
+  let opened = false;
+
+  const open = () => {
+    if (opened) return;
+    opened = true;
+
+    env.classList.add('is-open');
+    document.body.classList.remove('env-locked');
+
+    /* Дал ушул жерде — конок баскан учурда — музыка башталат.
+       Браузер автоойнотууну тоспойт, себеби бул колдонуучунун аракети. */
+    window.dispatchEvent(new CustomEvent('envelope:open'));
+
+    setTimeout(() => env.classList.add('is-gone'), 1700);
+  };
+
+  env.addEventListener('click', open);
+  env.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+  });
+})();
+
+
+/* -------------------------------------------------------
    1. Скролл анимациясы
    ------------------------------------------------------- */
 (() => {
@@ -98,10 +129,13 @@ const CONFIG = {
       .then(() => { btn.classList.add('is-playing'); return true; })
       .catch(() => { btn.classList.remove('is-playing'); return false; });
 
-  /* 1. Барак ачылганда ошол замат коюуга аракет кылабыз.
-        Браузерлер үнү бар автоойнотууну көбүнчө тосот — ошондуктан
-        ылдыйда конок биринчи тийгенде/жылдырганда кайра аракет кылынат. */
-  if (!broken) play();
+  /* 1. Конверт ачылганда — эң ишенимдүү жол, себеби конок өзү басат */
+  window.addEventListener('envelope:open', () => {
+    if (!broken && !userPaused) play();
+  });
+
+  /* Конверт жок болсо, барак ачылганда ошол замат аракет кылабыз */
+  if (!broken && !document.getElementById('envelope')) play();
 
   /* 2. Биринчи аракетте — тийүү, басуу, скролл, баскычтоп */
   const EVENTS = ['pointerdown', 'touchstart', 'keydown', 'scroll', 'click'];
