@@ -5,7 +5,7 @@
 /* Каллиграфия шрифти — долбоордун өзүндө турат, интернеттен жүктөлбөйт */
 @font-face{
   font-family:'Mon Plesir';
-  src:url('assets/fonts/monplesir.ttf') format('truetype');
+  src:url('assets/monplesir.ttf') format('truetype');
   font-weight:400;
   font-style:normal;
   font-display:swap;
@@ -24,7 +24,9 @@
   /* Эки гана шрифт. Экөө тең кыргыз тамгаларын (ң, ө, ү) толук колдойт.
      --f-script — аттар, той ээлери, ресторан, дата үчүн каллиграфия.
      --f-text   — калган БААРЫ ушул бир стилде. */
-  --f-script: 'Mon Plesir', cursive;
+  /* Эгер шрифт файлы кандайдыр себептен жүктөлбөй калса,
+     Comic Sans эмес, кооз серифке түшсүн */
+  --f-script: 'Mon Plesir', 'Cormorant Garamond', 'Times New Roman', serif;
   --f-text:   'Cormorant Garamond', 'Times New Roman', serif;
 
   /* эскилердин ордуна — баары бир стилде */
