@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Абдурасул & Роза — Үйлөнүү тоюна чакыруу</title>
+<meta name="description" content="Абдурасул менен Розанын үйлөнүү тоюна арналган ак дасторконубуздун кадырлуу коногу болууга чакырабыз. 09-ноябрь 2026, саат 16:00, «Тумар» ресторан.">
+<meta name="theme-color" content="#8997cb">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Абдурасул & Роза — Үйлөнүү тоюна чакыруу">
+<meta property="og:description" content="09-ноябрь 2026 • саат 16:00 • «Тумар» ресторан, Фучик көчөсү 7/1">
+<meta property="og:image" content="assets/hero.webp">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Marck+Script&family=Montserrat:wght@300;400;500;600&family=Prata&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Бир жолу жазылган жүрөк — калгандары буга шилтеме -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="heart" viewBox="0 0 100 100">
+    <path class="hrt__o" d="M50 88C22 67 10 52 10 37 10 24 20 15 32 15c9 0 15 5 18 12 3-7 9-12 18-12 12 0 22 9 22 22 0 15-12 30-40 51Z"/>
+    <g transform="translate(8 7.36) scale(.84)">
+      <path class="hrt__c" d="M50 45C43 55 26 49 20 61c-6 13 8 22 16 12 5-7-4-12-8-6"/>
+      <path class="hrt__c" d="M50 45c7 10 24 4 30 16 6 13-8 22-16 12-5-7 4-12 8-6"/>
+      <path class="hrt__s" d="M50 32c1.4 7.4 3.8 9.8 9 11.6-5.2 1.8-7.6 4.2-9 11.6-1.4-7.4-3.8-9.8-9-11.6 5.2-1.8 7.6-4.2 9-11.6Z"/>
+      <path class="hrt__s" d="M50 64c1.4 7.4 3.8 9.8 9 11.6-5.2 1.8-7.6 4.2-9 11.6-1.4-7.4-3.8-9.8-9-11.6 5.2-1.8 7.6-4.2 9-11.6Z"/>
+    </g>
+  </symbol>
+</svg>
+
+
+<!-- ================= МУЗЫКА ================= -->
+<audio id="bgMusic" loop preload="none" src="assets/music.mp3"></audio>
+
+<button id="musicBtn" class="music-btn" type="button" aria-label="Музыканы коюу / токтотуу">
+  <span class="music-btn__circle">
+    <svg class="ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+    <svg class="ico-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3.2v14H8zM12.8 5H16v14h-3.2z"/></svg>
+  </span>
+  <span class="music-btn__label">музыка</span>
+</button>
+
+
+<!-- ================= 1. HERO ================= -->
+<header class="hero">
+  <div class="hero__media">
+    <img src="assets/hero.webp" alt="Колдон кармашкан жаш жубайлар" fetchpriority="high">
+    <div class="hero__fade"></div>
+  </div>
+
+  <div class="hero__names">
+    <span class="script script--xl" data-reveal>Абдурасул</span>
+    <span class="script script--amp" data-reveal data-delay="1">&amp;</span>
+    <span class="script script--xl" data-reveal data-delay="2">Роза</span>
+  </div>
+
+  <div class="band" aria-hidden="true"></div>
+</header>
+
+
+<!-- ================= 2. ЧАКЫРУУ ================= -->
+<section class="section section--invite">
+  <div class="wrap">
+    <p class="caps caps--lead" data-reveal>Биздин урматтуу,<br>кадырлуу конокторубуз!</p>
+
+    <p class="caps caps--sm mt-xl" data-reveal>Сиздерди уулубуз</p>
+    <p class="script script--lg" data-reveal>Абдурасул</p>
+
+    <p class="caps caps--sm" data-reveal>менен</p>
+    <p class="script script--lg" data-reveal>Роза</p>
+
+    <p class="caps caps--sm mt-lg" data-reveal>
+      келинибиздин үйлөнүү тоюна<br>
+      арналган ак дасторконубуздун<br>
+      кадырлуу коногу болууга<br>
+      чакырабыз!
+    </p>
+
+    <div class="divider" data-reveal>
+      <i></i><svg class="hrt"><use href="#heart"/></svg><i></i>
+    </div>
+
+    <p class="caps caps--md" data-reveal>Той ээлери:</p>
+    <p class="script script--md" data-reveal>Арзикан</p>
+  </div>
+</section>
+
+
+<!-- ================= 3. КАЛЕНДАРЬ ================= -->
+<section class="section section--calendar">
+  <div class="edge" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <p class="caps caps--md" data-reveal>Той салтанаты:</p>
+    <p class="script script--date" data-reveal>09-ноябрь 2026</p>
+
+    <h2 class="month" data-reveal>Ноябрь</h2>
+
+    <div class="cal" data-reveal>
+      <div class="cal__head">
+        <span>ДШ</span><span>ШШ</span><span>ШР</span><span>БШ</span><span>ЖМ</span><span>ИШ</span><span>ЖК</span>
+      </div>
+      <div class="cal__grid">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span>1</span>
+        <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+        <span class="is-day"><img class="day-heart" src="assets/heart-plain.png" alt=""><b>9</b></span>
+        <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+        <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+        <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+        <span>30</span>
+      </div>
+    </div>
+
+    <p class="caps caps--md mt-lg" data-reveal>Башталуу убагы:</p>
+    <p class="time" data-reveal><i></i>16:00<i></i></p>
+  </div>
+</section>
+
+
+<!-- ================= 4. ТАЙМЕР ================= -->
+<section class="countdown">
+  <p class="script script--white" data-reveal>Той салтанатына чейин</p>
+
+  <div class="cd" data-reveal>
+    <div class="cd__cell"><span class="cd__num" id="cdDays">—</span><span class="cd__lbl">Күн</span></div>
+    <span class="cd__sep">:</span>
+    <div class="cd__cell"><span class="cd__num" id="cdHours">—</span><span class="cd__lbl">Саат</span></div>
+    <span class="cd__sep">:</span>
+    <div class="cd__cell"><span class="cd__num" id="cdMins">—</span><span class="cd__lbl">Мүнөт</span></div>
+    <span class="cd__sep">:</span>
+    <div class="cd__cell"><span class="cd__num" id="cdSecs">—</span><span class="cd__lbl">Секунд</span></div>
+  </div>
+</section>
+
+
+<!-- ================= 5. ЖАЙЫ ================= -->
+<section class="section section--venue">
+  <div class="edge" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <h2 class="caps caps--title" data-reveal>Той өтүүчү жай:</h2>
+    <div class="rule" data-reveal></div>
+
+    <p class="caps caps--sm" data-reveal>
+      Бишкек шаары,<br>
+      Фучик көчөсү, 7/1
+    </p>
+    <p class="script script--md" data-reveal>Тумар</p>
+    <p class="caps caps--sm" data-reveal>ресторан</p>
+
+    <p class="caps caps--xs mt-lg" data-reveal>
+      Сиздерге ыңгайлуу болушу үчүн<br>
+      төмөндө көрсөтүлгөн 2ГИС картасын<br>
+      колдонууңузду суранабыз!
+    </p>
+
+    <a class="btn btn--map" data-reveal target="_blank" rel="noopener"
+       href="https://2gis.kg/bishkek/search/%C2%AB%D0%A2%D0%A3%D0%9C%D0%90%D0%A0%C2%BB%20%D1%80%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%2C%20%D0%91%D0%B8%D1%88%D0%BA%D0%B5%D0%BA%2C%20%D0%A4%D1%83%D1%87%D0%B8%D0%BA%20%D0%BA%D3%A9%D1%87%D3%A9%D1%81%D2%AF%207%2F1/firm/70000001031576474/74.557659%2C42.881655?m=74.55946%2C42.882191%2F17.29">2GIS</a>
+
+    <div class="photo" data-reveal>
+      <img src="assets/couple.webp" alt="Колдо гүл кармаган жаш жубайлар" loading="lazy">
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= 6. RSVP ================= -->
+<section class="section section--rsvp">
+  <div class="edge" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="divider divider--solo" data-reveal>
+      <svg class="hrt"><use href="#heart"/></svg>
+    </div>
+
+    <h2 class="caps caps--title" data-reveal>Тойго келериңизди<br>ырастооңузду суранабыз</h2>
+
+    <form id="rsvpForm" class="form" data-reveal novalidate>
+      <label class="field">
+        <input type="text" id="guestName" name="name" placeholder="Атыңыз" autocomplete="name" required>
+        <svg class="hrt hrt--solid field__ico" aria-hidden="true"><use href="#heart"/></svg>
+      </label>
+
+      <div class="radios" role="radiogroup" aria-label="Жооп">
+        <label class="radio"><input type="radio" name="answer" value="Келем" checked><i></i><span>Келем</span></label>
+        <label class="radio"><input type="radio" name="answer" value="Келе албайм"><i></i><span>Келе албайм</span></label>
+      </div>
+
+      <div class="count" id="countRow">
+        <p class="count__label">Канча киши келесиз?</p>
+        <div class="stepper">
+          <button class="stepper__btn" type="button" data-step="-1" aria-label="Азайтуу">&minus;</button>
+          <input class="stepper__val" type="number" id="guestCount" name="count"
+                 value="1" min="1" max="20" step="1" inputmode="numeric" aria-label="Коноктордун саны">
+          <button class="stepper__btn" type="button" data-step="1" aria-label="Көбөйтүү">+</button>
+        </div>
+      </div>
+
+      <button class="btn btn--submit" type="submit">Жоопту жөнөтүү</button>
+      <p class="form__msg" id="formMsg" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="divider" data-reveal>
+      <i></i><svg class="hrt"><use href="#heart"/></svg><i></i>
+    </div>
+
+    <p class="caps caps--lead" data-reveal>Келиңиздер, кадырлуу<br>конокторубуз болуңуздар!</p>
+  </div>
+
+  <div class="band band--footer" aria-hidden="true"></div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
