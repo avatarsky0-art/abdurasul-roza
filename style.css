@@ -119,10 +119,10 @@ img{ display:block; max-width:100%; }
   z-index:0;
 }
 
-.section--invite::before  { right:-370px; top:10%; }
+.section--invite::before  { left:-370px;  top:10%; }
 .section--calendar::before{ right:-370px; top:14%; }
-.section--venue::before   { left:-370px;  top:12%; }
 .section--rsvp::before    { right:-370px; top:8%;  }
+.section--venue::before   { display:none; }   /* ресторан бөлүмүндө узор жок */
 
 /* ---------- көк узор кашаты ---------- */
 
@@ -155,23 +155,61 @@ img{ display:block; max-width:100%; }
    1. HERO
    ========================================================= */
 
-.hero{ position:relative; }
+/* Башкы барак — толук экран (9:16), астындагы эч нерсе көрүнбөйт */
+.hero{
+  position:relative;
+  height:100vh;
+  height:100svh;
+  min-height:540px;
+}
 
-.hero__media{ position:relative; }
+.hero__media{ position:absolute; inset:0; }
 .hero__media img{
   width:100%;
-  aspect-ratio:3/4;
+  height:100%;
   object-fit:cover;
   object-position:50% 42%;
 }
 .hero__fade{
   position:absolute; inset:0;
   background:linear-gradient(to bottom,
-      rgba(255,255,255,.96) 0%,
-      rgba(255,255,255,.82) 14%,
-      rgba(255,255,255,.25) 34%,
-      rgba(255,255,255,0)   52%);
+      rgba(255,255,255,.92) 0%,
+      rgba(255,255,255,.74) 10%,
+      rgba(255,255,255,.22) 24%,
+      rgba(255,255,255,0)   36%);
   pointer-events:none;
+}
+
+/* ылдый жылдыруу жебеси */
+.scroll-down{
+  position:absolute;
+  left:50%; bottom:84px;
+  z-index:4;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:46px; height:46px;
+  margin-left:-23px;
+  border:1.5px solid rgba(255,255,255,.9);
+  border-radius:50%;
+  background:rgba(137,151,203,.35);
+  backdrop-filter:blur(3px);
+  animation:bob 2s ease-in-out infinite;
+}
+.scroll-down svg{
+  width:22px; height:22px;
+  fill:none;
+  stroke:#fff;
+  stroke-width:2.6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+@keyframes bob{
+  0%,100%{ transform:translateY(0); }
+  50%    { transform:translateY(7px); }
+}
+@media (prefers-reduced-motion:reduce){
+  .scroll-down{ animation:none; }
 }
 
 .hero__names{
@@ -502,10 +540,10 @@ img{ display:block; max-width:100%; }
 
 .count__label{
   margin:0 0 12px;
-  font-family:var(--f-serif);
-  font-weight:600;
-  font-size:15px;
-  letter-spacing:.1em;
+  font-family:var(--f-body);
+  font-weight:500;
+  font-size:14px;
+  letter-spacing:.06em;
   text-transform:uppercase;
   color:var(--ink);
 }
@@ -548,8 +586,9 @@ img{ display:block; max-width:100%; }
   outline:none;
   background:none;
   text-align:center;
-  font-family:var(--f-display);
-  font-size:23px;
+  font-family:var(--f-body);
+  font-weight:500;
+  font-size:19px;
   font-variant-numeric:lining-nums;
   color:var(--ink);
   -moz-appearance:textfield;
