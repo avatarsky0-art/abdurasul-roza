@@ -83,39 +83,55 @@ const CONFIG = {
   if (!btn || !audio) return;
 
   audio.volume = 0.45;
-  let broken = false;
+  audio.preload = 'auto';
+
+  let broken = false;      // файл жүктөлбөй калса
+  let userPaused = false;  // конок өзү токтотсо, кайра коюбуз
 
   audio.addEventListener('error', () => {
     broken = true;
     btn.classList.remove('is-playing');
   });
 
-  const toggle = async () => {
+  const play = () =>
+    audio.play()
+      .then(() => { btn.classList.add('is-playing'); return true; })
+      .catch(() => { btn.classList.remove('is-playing'); return false; });
+
+  /* 1. Барак ачылганда ошол замат коюуга аракет кылабыз.
+        Браузерлер үнү бар автоойнотууну көбүнчө тосот — ошондуктан
+        ылдыйда конок биринчи тийгенде/жылдырганда кайра аракет кылынат. */
+  if (!broken) play();
+
+  /* 2. Биринчи аракетте — тийүү, басуу, скролл, баскычтоп */
+  const EVENTS = ['pointerdown', 'touchstart', 'keydown', 'scroll', 'click'];
+
+  const stopWatching = () =>
+    EVENTS.forEach(ev => window.removeEventListener(ev, kick));
+
+  async function kick() {
+    if (broken || userPaused) { stopWatching(); return; }
+    if (!audio.paused) { stopWatching(); return; }
+    if (await play()) stopWatching();
+  }
+
+  EVENTS.forEach(ev =>
+    window.addEventListener(ev, kick, { passive: true })
+  );
+
+  /* Баскыч: коюу / токтотуу */
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();          // window'догу kick иштебесин
     if (broken) return;
     if (audio.paused) {
-      try {
-        await audio.play();
-        btn.classList.add('is-playing');
-      } catch (_) {
-        btn.classList.remove('is-playing');
-      }
+      userPaused = false;
+      play();
     } else {
+      userPaused = true;
       audio.pause();
       btn.classList.remove('is-playing');
     }
-  };
-
-  btn.addEventListener('click', toggle);
-
-  /* Биринчи тийгенде өзү коюлат (браузерлер талап кылат) */
-  const autostart = () => {
-    audio.play()
-      .then(() => btn.classList.add('is-playing'))
-      .catch(() => {});
-  };
-  ['pointerdown', 'touchstart', 'keydown'].forEach(ev =>
-    window.addEventListener(ev, autostart, { once: true, passive: true })
-  );
+  });
 
   /* Герой бүткөндөн кийин баскыч кичирейип ылдыйга өтөт */
   const hero = document.querySelector('.hero');
